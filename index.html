@@ -3083,3 +3083,36 @@ body::before {
   sync();
 })();
 </script>
+
+<style id="cleanlink-preview-fix">
+#projects .project-card {
+  overflow: hidden;
+}
+
+#projects .project-visual.cleanlink-preview {
+  width: 100%;
+  height: 220px;
+  max-height: 220px;
+  overflow: hidden;
+  border-radius: 16px;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+#projects .project-visual.cleanlink-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+@media (max-width: 600px) {
+  #projects .project-visual.cleanlink-preview {
+    height: 180px;
+    max-height: 180px;
+  }
+}
+</style>
