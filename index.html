@@ -461,7 +461,7 @@
   border-radius: 50%;
   left: -35px;
   top: 60px;
-  transform: rotate(-25deg);
+  transform: rotate(25deg);
 }
 .space-moon {
   width: 75px;
@@ -954,32 +954,56 @@ header, main, footer {
   from { opacity: .15; transform: scale(.6); }
   to { opacity: 1; transform: scale(1.8); }
 }
+
 .galaxy-comet {
   position: absolute;
-  width: 140px; height: 2px;
+  width: clamp(90px, 12vw, 140px);
+  height: 2px;
   opacity: 0;
-  background: linear-gradient(90deg, transparent, #fff, #ff637d, transparent);
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, #fff, #ff9eae, transparent);
   filter: drop-shadow(0 0 5px #ff1744);
-  transform: rotate(-35deg);
-  animation: comet-flight 9s linear infinite;
+  transform: rotate(25deg);
+  animation: comet-flight 12s linear infinite;
 }
 .galaxy-comet::after {
   content: "";
   position: absolute;
-  right: 25%; top: -2px;
-  width: 5px; height: 5px;
+  right: 0%;
+  top: -2px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 0 12px 4px #ff4267;
 }
-.galaxy-comet.c1 { top: 18%; left: -20%; animation-delay: 1s; }
-.galaxy-comet.c2 { top: 55%; left: -20%; animation-delay: 6s; animation-duration: 12s; }
-@keyframes comet-flight {
-  0%, 72% { opacity: 0; transform: translate3d(0,0,0) rotate(-35deg); }
-  75% { opacity: .9; }
-  90% { opacity: 0; transform: translate3d(140vw,65vh,0) rotate(-35deg); }
-  100% { opacity: 0; }
+.galaxy-comet.c1 {
+  top: 12%;
+  left: -15%;
+  animation-delay: 1s;
 }
+.galaxy-comet.c2 {
+  top: 38%;
+  left: -15%;
+  animation-delay: 6s;
+  animation-duration: 15s;
+}
+@keyframes comet-flight {
+  0%, 70% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(25deg);
+  }
+  73% { opacity: .9; }
+  88% {
+    opacity: 0;
+    transform: translate3d(115vw, 42vh, 0) rotate(25deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(115vw, 42vh, 0) rotate(25deg);
+  }
+}
+
 .galaxy-planet {
   position: absolute;
   border-radius: 50%;
@@ -2000,42 +2024,42 @@ body::before {
   const audio = document.getElementById("luna-audio");
   if (!box || !button || !status || !audio) return;
 
-  function setSpeaking(active) {
-    box.classList.toggle("is-speaking", active);
-    button.textContent = active ? "■ Stop" : "▶ Sapa";
-    status.textContent = active ? "Luna sedang menyapa…" : "Asisten pribadi Deva";
-  }
-
-  function playLuna() {
+  function stopLuna() {
     audio.pause();
     audio.currentTime = 0;
-    setSpeaking(true);
-    audio.play().catch(() => {
-      setSpeaking(false);
-      status.textContent = "Ketuk Sapa untuk mendengarkan.";
-    });
+    box.classList.remove("is-speaking");
+    button.textContent = "▶ Sapa";
+    status.textContent = "Asisten pribadi Deva";
   }
 
   button.addEventListener("click", () => {
     if (!audio.paused) {
-      audio.pause();
-      audio.currentTime = 0;
-      setSpeaking(false);
-    } else {
-      playLuna();
+      stopLuna();
+      return;
     }
+
+    audio.currentTime = 0;
+    box.classList.add("is-speaking");
+    button.textContent = "■ Stop";
+    status.textContent = "Luna sedang menyapa…";
+
+    audio.play().catch(() => {
+      stopLuna();
+      status.textContent = "Ketuk Sapa untuk mendengarkan.";
+    });
   });
 
-  audio.addEventListener("ended", () => setSpeaking(false));
+  audio.addEventListener("ended", stopLuna);
   audio.addEventListener("error", () => {
-    setSpeaking(false);
+    stopLuna();
     status.textContent = "File luna-voice.mp3 tidak ditemukan.";
   });
 
-  // Coba sambutan otomatis saat halaman selesai dimuat.
-  window.addEventListener("load", () => {
-    setTimeout(playLuna, 700);
-  }, { once: true });
+  // Hentikan audio saat halaman ditinggalkan atau disembunyikan.
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stopLuna();
+  });
+  window.addEventListener("pagehide", stopLuna);
 })();
 </script>
 <!-- /DEVA-LUNA-ASSISTANT -->
