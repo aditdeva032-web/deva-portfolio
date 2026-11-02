@@ -75,5 +75,107 @@
       <img src="sertifikat-kompetensi.jpg" alt="Sertifikat Kompetensi">
     </div>
   </main>
+
+
+
+
+
+
+
+<style id="deva-cinematic-detail-style">
+html { background: #050816; }
+body { overflow-x: hidden; }
+#deva-cinematic-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  pointer-events: none;
+  background: radial-gradient(circle at center, #172554, #030712 72%);
+  animation: curtain-out .85s cubic-bezier(.7,0,.2,1) forwards;
+}
+@keyframes curtain-out {
+  from { opacity: 1; clip-path: inset(0 0 0 0); }
+  to { opacity: 0; clip-path: inset(0 0 0 100%); }
+}
+
+/* Jendela UI muncul bergantian */
+body > *:not(script):not(style) {
+  opacity: 0;
+  transform: translateY(28px) scale(.96);
+  animation: window-arrive .8s cubic-bezier(.16,1,.3,1) forwards;
+}
+body > *:nth-child(1) { animation-delay: .15s; }
+body > *:nth-child(2) { animation-delay: .35s; }
+body > *:nth-child(3) { animation-delay: .55s; }
+body > *:nth-child(4) { animation-delay: .75s; }
+
+@keyframes window-arrive {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Dokumen meledak lembut dari tengah */
+body img {
+  opacity: 0;
+  transform: scale(.12) rotate(-12deg);
+  transform-origin: center center;
+  animation: document-burst 1.25s cubic-bezier(.16,1.35,.3,1) .7s forwards;
+  filter: drop-shadow(0 0 0 rgba(56,189,248,0));
+}
+@keyframes document-burst {
+  0% {
+    opacity: 0;
+    transform: scale(.12) rotate(-12deg);
+    filter: drop-shadow(0 0 0 rgba(56,189,248,0));
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.06) rotate(2deg);
+    filter: drop-shadow(0 0 45px rgba(56,189,248,.65));
+  }
+  75% { transform: scale(.97) rotate(-1deg); }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+    filter: drop-shadow(0 18px 45px rgba(0,0,0,.4));
+  }
+}
+
+/* Deskripsi diketik */
+.deva-typewriter {
+  overflow: hidden;
+  white-space: normal;
+  width: 0;
+  max-width: 100%;
+  animation: type-description 2.4s steps(42,end) 1.1s forwards;
+}
+@keyframes type-description {
+  to { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+  }
+}
+</style>
+
+
+<script id="deva-cinematic-detail-script">
+(() => {
+  const curtain = document.createElement("div");
+  curtain.id = "deva-cinematic-curtain";
+  curtain.setAttribute("aria-hidden", "true");
+  document.body.appendChild(curtain);
+  curtain.addEventListener("animationend", () => curtain.remove(), { once: true });
+
+  const images = document.querySelectorAll("body img");
+  images.forEach(img => img.classList.add("deva-document-burst"));
+
+  const description = [...document.querySelectorAll("p")]
+    .find(p => p.textContent.trim().length > 15);
+  if (description) description.classList.add("deva-typewriter");
+})();
+</script>
+
 </body>
 </html>
