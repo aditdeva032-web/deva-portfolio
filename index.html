@@ -2185,20 +2185,20 @@ body::before {
   </div>
 
   <div class="grid projects-grid">
-    <article class="project-card reveal">
-      <div class="project-visual cleanlink-preview">
-        <img src="previewCleanLink.jpg" alt="Preview website DAS CleanLink">
-      </div>
-      <div class="project-content">
-        <span class="project-tag">ANDROID APP</span>
-        <h3>DAS CleanLink</h3>
-        <p>Aplikasi Android yang saya kembangkan. Kunjungi website proyek atau unduh versi aplikasinya melalui GitHub Releases.</p>
-        <div class="project-actions">
-          <a class="project-link" href="https://github.com/aditdeva032-web/DAS-CleanLink/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer">Unduh APK ↗</a>
-          <a class="project-link" href="https://aditdeva032-web.github.io/DAS-CleanLink/" target="_blank" rel="noopener noreferrer">Buka Website ↗</a>
-        </div>
-      </div>
-    </article>
+    <article class="project-card reveal cleanlink-project-card" tabindex="0" role="link" aria-label="Lihat penjelasan DAS CleanLink" data-project-link="das-cleanlink.html">
+  <div class="project-visual cleanlink-preview">
+    <img src="previewCleanLink.jpg" alt="Preview website DAS CleanLink">
+  </div>
+  <div class="project-content">
+    <h3>DAS CleanLink</h3>
+    <p>Aplikasi Android yang saya kembangkan untuk memberantas iklan.</p>
+    <div class="project-actions">
+      <a class="project-link" href="https://github.com/aditdeva032-web/DAS-CleanLink/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer">Unduh APK ↗</a>
+      <a class="project-link" href="https://aditdeva032-web.github.io/DAS-CleanLink/" target="_blank" rel="noopener noreferrer">Buka Website ↗</a>
+    </div>
+    <p class="cleanlink-more">Klik kartu untuk melihat detail proyek <span>↗</span></p>
+  </div>
+</article>
   </div>
 </section>
 
@@ -3145,3 +3145,42 @@ body::before {
   }
 }
 </style>
+
+<style id="cleanlink-card-polish">
+#projects .section-subtitle { margin-bottom: 2.5rem; }
+#projects .cleanlink-project-card {
+  border: 1px solid rgba(56,189,248,.32);
+  border-radius: 22px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+#projects .cleanlink-project-card:hover,
+#projects .cleanlink-project-card:focus-visible {
+  transform: translateY(-8px);
+  border-color: #38bdf8;
+  box-shadow: 0 18px 50px rgba(56,189,248,.16);
+  outline: none;
+}
+#projects .cleanlink-project-card .project-content { padding: 1.5rem; }
+#projects .cleanlink-project-card .project-visual { border-radius: 0; }
+#projects .cleanlink-more { margin-top: 1.2rem; color: #38bdf8; font-size: .9rem; }
+#projects .cleanlink-more span { display: inline-block; transition: transform .25s ease; }
+#projects .cleanlink-project-card:hover .cleanlink-more span { transform: translate(4px,-3px); }
+</style>
+<script id="cleanlink-card-navigation">
+(() => {
+  document.querySelectorAll('[data-project-link]').forEach(card => {
+    const go = () => location.href = card.dataset.projectLink;
+    card.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      go();
+    });
+    card.addEventListener('keydown', e => {
+      if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a')) {
+        e.preventDefault(); go();
+      }
+    });
+  });
+})();
+</script>
