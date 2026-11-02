@@ -2192,11 +2192,7 @@ body::before {
   <div class="project-content">
     <h3>DAS CleanLink</h3>
     <p>Aplikasi Android yang saya kembangkan untuk memberantas iklan.</p>
-    <div class="project-actions">
-      <a class="project-link" href="https://github.com/aditdeva032-web/DAS-CleanLink/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer">Unduh APK ↗</a>
-      <a class="project-link" href="https://aditdeva032-web.github.io/DAS-CleanLink/" target="_blank" rel="noopener noreferrer">Buka Website ↗</a>
-    </div>
-    <p class="cleanlink-more">Klik kartu untuk melihat detail proyek <span>↗</span></p>
+    
   </div>
 </article>
   </div>
@@ -3184,3 +3180,32 @@ body::before {
   });
 })();
 </script>
+
+<style id="cleanlink-card-final">
+#projects .cleanlink-project-card {
+  border-radius: 18px;
+  overflow: hidden;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+#projects .cleanlink-project-card .project-visual {
+  height: 220px;
+  max-height: 220px;
+  margin: 0;
+  border-radius: 0;
+  overflow: hidden;
+}
+#projects .cleanlink-project-card .project-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+#projects .cleanlink-project-card .project-content {
+  padding: 1.25rem;
+}
+#projects .cleanlink-project-card .project-content h3 {
+  margin-top: 0;
+}
+</style>
