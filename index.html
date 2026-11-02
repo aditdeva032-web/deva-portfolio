@@ -1864,7 +1864,10 @@ body::before {
 
   <header>
     <nav class="container">
-      <a class="logo" href="#home">DEVA<span>.</span></a>
+      <a class="logo" href="#home">
+  <img src="logo.png" alt="Logo DEVA" class="nav-logo">
+  <span class="logo-text">DEVA<span>.</span></span>
+</a>
 
       <button class="menu-btn" id="menuBtn"
         aria-label="Buka navigasi" aria-expanded="false">☰</button>
@@ -2542,5 +2545,50 @@ body::before {
 .portfolio-card-link:focus-visible {
   outline: 2px solid #8ee7ff;
   outline-offset: 4px;
+}
+</style>
+
+<style>
+/* Pratinjau kartu: tampilkan bagian atas dokumen saja */
+.portfolio-image {
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  position: relative;
+  background: rgba(255,255,255,.04);
+}
+
+.portfolio-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Halaman detail tetap menampilkan gambar utuh */
+.certificate img {
+  width: 100%;
+  height: auto;
+  max-height: 82vh;
+  object-fit: contain;
+}
+</style>
+
+<style id="deva-navbar-logo-style">
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+.logo-text {
+  display: inline-flex;
+  align-items: center;
 }
 </style>
