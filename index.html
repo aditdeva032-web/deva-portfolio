@@ -2925,3 +2925,171 @@ body::before {
   }
 }
 </style>
+
+<style id="luna-face-style">
+#luna-welcome .luna-avatar {
+  position: relative;
+  overflow: hidden;
+  font-size: 0;
+  background: radial-gradient(circle at 35% 25%, #b7f3ff, #657dff 65%, #253c8f);
+  box-shadow: 0 0 14px #6bdcff66;
+}
+#luna-welcome .luna-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: translate(var(--face-x, 0px), var(--face-y, 0px));
+  transition: transform .12s ease-out;
+}
+#luna-welcome .luna-eyes {
+  display: flex;
+  gap: 7px;
+  margin-top: -2px;
+}
+#luna-welcome .luna-eye {
+  position: relative;
+  width: 6px;
+  height: 9px;
+  border-radius: 50%;
+  background: #10234d;
+  box-shadow: inset 1px 1px 1px #fff;
+}
+#luna-welcome .luna-eye::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  top: 1px;
+  right: 1px;
+  border-radius: 50%;
+  background: white;
+}
+#luna-welcome .luna-mouth {
+  position: absolute;
+  width: 7px;
+  height: 3px;
+  left: 50%;
+  top: 21px;
+  transform: translateX(-50%);
+  border-bottom: 1.5px solid #172554;
+  border-radius: 50%;
+}
+#luna-welcome .luna-face.is-blinking .luna-eye {
+  transform: scaleY(.12);
+}
+#luna-welcome .luna-eye {
+  transition: transform .08s ease;
+}
+@media(prefers-reduced-motion:reduce) {
+  #luna-welcome .luna-face { transition: none; }
+}
+</style>
+
+<script id="luna-face-script">
+(() => {
+  const avatar = document.querySelector("#luna-welcome .luna-avatar");
+  if (!avatar || avatar.querySelector(".luna-face")) return;
+
+  avatar.textContent = "";
+  avatar.innerHTML = `
+    <div class="luna-face">
+      <div class="luna-eyes">
+        <span class="luna-eye"></span>
+        <span class="luna-eye"></span>
+      </div>
+      <span class="luna-mouth"></span>
+    </div>`;
+
+  const face = avatar.querySelector(".luna-face");
+  const eyes = avatar.querySelectorAll(".luna-eye");
+  const maxMove = 3;
+
+  function lookAt(x, y) {
+    const rect = avatar.getBoundingClientRect();
+    const dx = (x - (rect.left + rect.width / 2)) / (window.innerWidth / 2);
+    const dy = (y - (rect.top + rect.height / 2)) / (window.innerHeight / 2);
+    const mx = Math.max(-maxMove, Math.min(maxMove, dx * maxMove));
+    const my = Math.max(-maxMove, Math.min(maxMove, dy * maxMove));
+
+    face.style.setProperty("--face-x", mx + "px");
+    face.style.setProperty("--face-y", my + "px");
+    eyes.forEach(eye => {
+      eye.style.transform = `translate(${mx * .45}px, ${my * .45}px)`;
+    });
+  }
+
+  document.addEventListener("pointermove", event => {
+    lookAt(event.clientX, event.clientY);
+  }, { passive: true });
+
+  document.addEventListener("touchmove", event => {
+    const touch = event.touches[0];
+    if (touch) lookAt(touch.clientX, touch.clientY);
+  }, { passive: true });
+
+  function blink() {
+    face.classList.add("is-blinking");
+    setTimeout(() => face.classList.remove("is-blinking"), 140);
+    setTimeout(blink, 2200 + Math.random() * 3800);
+  }
+  setTimeout(blink, 1500);
+})();
+</script>
+
+<style id="luna-speaking-mouth">
+#luna-welcome .luna-mouth {
+  width: 7px;
+  height: 3px;
+  border: 1.5px solid #172554;
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+  background: #172554;
+  transform: translateX(-50%);
+  transform-origin: center;
+}
+
+#luna-welcome.is-speaking .luna-mouth {
+  animation: luna-mouth-talk .18s ease-in-out infinite alternate;
+}
+
+@keyframes luna-mouth-talk {
+  0% {
+    height: 2px;
+    width: 5px;
+    border-radius: 50%;
+  }
+  100% {
+    height: 8px;
+    width: 7px;
+    border-radius: 45%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #luna-welcome.is-speaking .luna-mouth {
+    animation-duration: .6s;
+  }
+}
+</style>
+
+<script id="luna-speaking-sync">
+(() => {
+  const box = document.getElementById("luna-welcome");
+  const audio = document.getElementById("luna-audio");
+  if (!box || !audio) return;
+
+  const sync = () => {
+    box.classList.toggle(
+      "is-speaking",
+      !audio.paused && !audio.ended
+    );
+  };
+
+  ["play", "playing", "pause", "ended", "emptied"].forEach(event => {
+    audio.addEventListener(event, sync);
+  });
+
+  sync();
+})();
+</script>
