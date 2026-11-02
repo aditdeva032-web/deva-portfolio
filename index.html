@@ -1874,6 +1874,7 @@ body::before {
         <li><a href="#about">Tentang</a></li>
         <li><a href="#skills">Keahlian</a></li>
         <li><a href="#projects">Proyek</a></li>
+        <li><a href="#portfolio">Portofolio</a></li>
         <li><a href="#contact">Kontak</a></li>
       </ul>
     </nav>
@@ -2011,6 +2012,55 @@ body::before {
           <p>Surat digital interaktif dengan animasi dan narasi personal.</p>
           <div class="tags"><span class="tag">CSS</span><span class="tag">Web Design</span></div>
           <a class="project-link" href="#">Lihat proyek ↗</a>
+        </article>
+      </div>
+    </section>
+
+
+    <section class="container" id="portfolio">
+      <div class="section-head reveal">
+        <div class="eyebrow">Portofolio</div>
+        <h2 class="section-title">Kumpulan dokumen</h2>
+        <p class="section-desc">
+          Kumpulan sertifikat yang saya punya walau beberapa tidak berkaitan dengan bidang IT.
+        </p>
+      </div>
+
+      <div class="grid portfolio-grid">
+        <article class="card reveal portfolio-card">
+          <a class="portfolio-card-link" href="detail-sertifikat-komputer.html">
+            <div class="portfolio-image">
+              <img src="sertifikat-komputer.jpg" alt="Sertifikat Komputer">
+            </div>
+            <div class="portfolio-info">
+              <h3>Sertifikat Komputer</h3>
+              <p>Sertifikat pembelajaran komputer.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="card reveal portfolio-card">
+          <a class="portfolio-card-link" href="detail-sertifikat-kompetensi.html">
+            <div class="portfolio-image">
+              <img src="sertifikat-kompetensi.jpg" alt="Sertifikat Kompetensi">
+            </div>
+            <div class="portfolio-info">
+              <h3>Sertifikat Kompetensi</h3>
+              <p>Dokumen sertifikat kompetensi.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="card reveal portfolio-card">
+          <a class="portfolio-card-link" href="detail-piagam-pencak-silat.html">
+            <div class="portfolio-image">
+              <img src="piagam-pencak-silat.jpg" alt="Piagam Pencak Silat">
+            </div>
+            <div class="portfolio-info">
+              <h3>Piagam Pencak Silat</h3>
+              <p>Dokumentasi pengalaman dan pencapaian olahraga.</p>
+            </div>
+          </a>
         </article>
       </div>
     </section>
@@ -2389,3 +2439,108 @@ body::before {
 
 </body>
 </html>
+
+<style>
+/* ===== PORTFOLIO IMAGE CARDS ===== */
+.portfolio-card {
+  overflow: hidden;
+  padding: 0;
+  transition: transform .35s ease, border-color .35s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-8px);
+}
+
+.portfolio-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: rgba(255,255,255,.04);
+}
+
+.portfolio-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.portfolio-card:hover .portfolio-image img {
+  transform: scale(1.06);
+}
+
+.portfolio-info {
+  padding: 22px;
+}
+
+.portfolio-info h3 {
+  margin: 0 0 10px;
+}
+
+.portfolio-info p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--muted, #aab3c5);
+}
+</style>
+
+<style>
+/* ===== PORTFOLIO IMAGE CARDS ===== */
+.portfolio-card {
+  overflow: hidden;
+  padding: 0;
+  transition: transform .35s ease, border-color .35s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-8px);
+}
+
+.portfolio-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: rgba(255,255,255,.04);
+}
+
+.portfolio-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.portfolio-card:hover .portfolio-image img {
+  transform: scale(1.06);
+}
+
+.portfolio-info {
+  padding: 22px;
+}
+
+.portfolio-info h3 {
+  margin: 0 0 10px;
+}
+
+.portfolio-info p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--muted, #aab3c5);
+}
+</style>
+
+<style>
+.portfolio-card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+.portfolio-card-link:focus-visible {
+  outline: 2px solid #8ee7ff;
+  outline-offset: 4px;
+}
+</style>
