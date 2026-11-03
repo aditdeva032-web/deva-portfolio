@@ -1828,6 +1828,593 @@ body::before {
 }
 </style>
 
+
+<style>
+/* ===== PORTFOLIO IMAGE CARDS ===== */
+.portfolio-card {
+  overflow: hidden;
+  padding: 0;
+  transition: transform .35s ease, border-color .35s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-8px);
+}
+
+.portfolio-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: rgba(255,255,255,.04);
+}
+
+.portfolio-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.portfolio-card:hover .portfolio-image img {
+  transform: scale(1.06);
+}
+
+.portfolio-info {
+  padding: 22px;
+}
+
+.portfolio-info h3 {
+  margin: 0 0 10px;
+}
+
+.portfolio-info p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--muted, #aab3c5);
+}
+</style>
+
+<style>
+/* ===== PORTFOLIO IMAGE CARDS ===== */
+.portfolio-card {
+  overflow: hidden;
+  padding: 0;
+  transition: transform .35s ease, border-color .35s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-8px);
+}
+
+.portfolio-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: rgba(255,255,255,.04);
+}
+
+.portfolio-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.portfolio-card:hover .portfolio-image img {
+  transform: scale(1.06);
+}
+
+.portfolio-info {
+  padding: 22px;
+}
+
+.portfolio-info h3 {
+  margin: 0 0 10px;
+}
+
+.portfolio-info p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--muted, #aab3c5);
+}
+</style>
+
+<style>
+.portfolio-card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+.portfolio-card-link:focus-visible {
+  outline: 2px solid #8ee7ff;
+  outline-offset: 4px;
+}
+</style>
+
+<style>
+/* Pratinjau kartu: tampilkan bagian atas dokumen saja */
+.portfolio-image {
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  position: relative;
+  background: rgba(255,255,255,.04);
+}
+
+.portfolio-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Halaman detail tetap menampilkan gambar utuh */
+.certificate img {
+  width: 100%;
+  height: auto;
+  max-height: 82vh;
+  object-fit: contain;
+}
+</style>
+
+<style id="deva-navbar-logo-style">
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+.logo-text {
+  display: inline-flex;
+  align-items: center;
+}
+</style>
+
+<style id="deva-portfolio-entrance-animation">
+#portfolio .section-head {
+  opacity: 0;
+  transform: translateY(35px) scale(.97);
+  filter: blur(8px);
+  transition:
+    opacity .9s ease,
+    transform .9s cubic-bezier(.16,1,.3,1),
+    filter .9s ease;
+}
+
+#portfolio .portfolio-card {
+  opacity: 0;
+  transform: translateY(65px) scale(.92) rotateX(8deg);
+  filter: blur(10px);
+  transition:
+    opacity .8s ease,
+    transform .9s cubic-bezier(.16,1,.3,1),
+    filter .8s ease;
+  transition-delay: calc(var(--card-index, 0) * 160ms);
+}
+
+#portfolio.portfolio-visible .section-head,
+#portfolio.portfolio-visible .portfolio-card {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotateX(0);
+  filter: blur(0);
+}
+
+#portfolio .section-title {
+  text-shadow: 0 0 0 rgba(56,189,248,0);
+  transition: text-shadow 1s ease;
+}
+
+#portfolio.portfolio-visible .section-title {
+  text-shadow:
+    0 0 18px rgba(56,189,248,.35),
+    0 0 40px rgba(99,102,241,.2);
+}
+
+#portfolio .portfolio-image {
+  position: relative;
+  overflow: hidden;
+}
+
+#portfolio .portfolio-image::after {
+  content: "";
+  position: absolute;
+  inset: -60% -80%;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255,255,255,.22) 48%,
+    rgba(56,189,248,.18) 52%,
+    transparent 65%
+  );
+  transform: translateX(-100%) rotate(12deg);
+  opacity: 0;
+}
+
+#portfolio.portfolio-visible .portfolio-card:nth-child(1) .portfolio-image::after {
+  animation: portfolio-shine 1.4s ease .7s both;
+}
+
+#portfolio.portfolio-visible .portfolio-card:nth-child(2) .portfolio-image::after {
+  animation: portfolio-shine 1.4s ease .9s both;
+}
+
+#portfolio.portfolio-visible .portfolio-card:nth-child(3) .portfolio-image::after {
+  animation: portfolio-shine 1.4s ease 1.1s both;
+}
+
+@keyframes portfolio-shine {
+  0% { transform: translateX(-100%) rotate(12deg); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(100%) rotate(12deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #portfolio .section-head,
+  #portfolio .portfolio-card {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  #portfolio .portfolio-image::after {
+    display: none;
+  }
+}
+</style>
+
+<style>
+/* PERFORMANCE: mobile and tablet */
+@media (max-width: 768px) {
+  .galaxy-nebula,
+  .tech-glow {
+    filter: none !important;
+  }
+
+  .tech-monitor,
+  .tech-phone {
+    filter: none !important;
+  }
+
+  .tech-modal-backdrop {
+    backdrop-filter: none !important;
+  }
+
+  .it-holo,
+  .tech-gear {
+    animation-duration: 40s !important;
+  }
+
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Respect device motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+
+<style id="luna-face-style">
+#luna-welcome .luna-avatar {
+  position: relative;
+  overflow: hidden;
+  font-size: 0;
+  background: radial-gradient(circle at 35% 25%, #b7f3ff, #657dff 65%, #253c8f);
+  box-shadow: 0 0 14px #6bdcff66;
+}
+#luna-welcome .luna-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: translate(var(--face-x, 0px), var(--face-y, 0px));
+  transition: transform .12s ease-out;
+}
+#luna-welcome .luna-eyes {
+  display: flex;
+  gap: 7px;
+  margin-top: -2px;
+}
+#luna-welcome .luna-eye {
+  position: relative;
+  width: 6px;
+  height: 9px;
+  border-radius: 50%;
+  background: #10234d;
+  box-shadow: inset 1px 1px 1px #fff;
+}
+#luna-welcome .luna-eye::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  top: 1px;
+  right: 1px;
+  border-radius: 50%;
+  background: white;
+}
+#luna-welcome .luna-mouth {
+  position: absolute;
+  width: 7px;
+  height: 3px;
+  left: 50%;
+  top: 21px;
+  transform: translateX(-50%);
+  border-bottom: 1.5px solid #172554;
+  border-radius: 50%;
+}
+#luna-welcome .luna-face.is-blinking .luna-eye {
+  transform: scaleY(.12);
+}
+#luna-welcome .luna-eye {
+  transition: transform .08s ease;
+}
+@media(prefers-reduced-motion:reduce) {
+  #luna-welcome .luna-face { transition: none; }
+}
+</style>
+
+<style id="luna-speaking-mouth">
+#luna-welcome .luna-mouth {
+  width: 7px;
+  height: 3px;
+  border: 1.5px solid #172554;
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+  background: #172554;
+  transform: translateX(-50%);
+  transform-origin: center;
+}
+
+#luna-welcome.is-speaking .luna-mouth {
+  animation: luna-mouth-talk .18s ease-in-out infinite alternate;
+}
+
+@keyframes luna-mouth-talk {
+  0% {
+    height: 2px;
+    width: 5px;
+    border-radius: 50%;
+  }
+  100% {
+    height: 8px;
+    width: 7px;
+    border-radius: 45%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #luna-welcome.is-speaking .luna-mouth {
+    animation-duration: .6s;
+  }
+}
+</style>
+
+<style id="cleanlink-preview-fix">
+#projects .project-card {
+  overflow: hidden;
+}
+
+#projects .project-visual.cleanlink-preview {
+  width: 100%;
+  height: 220px;
+  max-height: 220px;
+  overflow: hidden;
+  border-radius: 16px;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+#projects .project-visual.cleanlink-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+@media (max-width: 600px) {
+  #projects .project-visual.cleanlink-preview {
+    height: 180px;
+    max-height: 180px;
+  }
+}
+</style>
+
+<style id="cleanlink-card-polish">
+#projects .section-subtitle { margin-bottom: 2.5rem; }
+#projects .cleanlink-project-card {
+  border: 1px solid rgba(56,189,248,.32);
+  border-radius: 22px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+#projects .cleanlink-project-card:hover,
+#projects .cleanlink-project-card:focus-visible {
+  transform: translateY(-8px);
+  border-color: #38bdf8;
+  box-shadow: 0 18px 50px rgba(56,189,248,.16);
+  outline: none;
+}
+#projects .cleanlink-project-card .project-content { padding: 1.5rem; }
+#projects .cleanlink-project-card .project-visual { border-radius: 0; }
+#projects .cleanlink-more { margin-top: 1.2rem; color: #38bdf8; font-size: .9rem; }
+#projects .cleanlink-more span { display: inline-block; transition: transform .25s ease; }
+#projects .cleanlink-project-card:hover .cleanlink-more span { transform: translate(4px,-3px); }
+</style>
+
+<style id="cleanlink-card-final">
+#projects .cleanlink-project-card {
+  border-radius: 18px;
+  overflow: hidden;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+#projects .cleanlink-project-card .project-visual {
+  height: 220px;
+  max-height: 220px;
+  margin: 0;
+  border-radius: 0;
+  overflow: hidden;
+}
+#projects .cleanlink-project-card .project-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+#projects .cleanlink-project-card .project-content {
+  padding: 1.25rem;
+}
+#projects .cleanlink-project-card .project-content h3 {
+  margin-top: 0;
+}
+</style>
+
+<style id="deva-cursor-reveal-style">
+.deva-swipe-frame {
+  position: relative;
+  overflow: hidden;
+  cursor: crosshair;
+  isolation: isolate;
+}
+.deva-swipe-frame .deva-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.deva-swipe-frame .deva-photo-main {
+  z-index: 1;
+}
+.deva-swipe-frame .deva-photo-robot {
+  z-index: 2;
+  opacity: 0;
+  clip-path: circle(0px at var(--cursor-x, 50%) var(--cursor-y, 50%));
+  transition: clip-path .12s ease-out;
+  pointer-events: none;
+}
+.deva-swipe-frame.cursor-active .deva-photo-robot {
+  opacity: 1;
+  clip-path: circle(85px at var(--cursor-x, 50%) var(--cursor-y, 50%));
+}
+.deva-swipe-frame .deva-swipe-hint {
+  z-index: 4;
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 999px;
+  background: rgba(2,6,23,.62);
+  color: #e0f2fe;
+  font: 700 10px/1.2 system-ui,sans-serif;
+  letter-spacing: 1.5px;
+  pointer-events: none;
+}
+@media (hover: none) {
+  .deva-swipe-frame .deva-swipe-hint { display: none; }
+}
+</style>
+
+<style>
+#luna-welcome {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+  padding: 7px 10px;
+  max-width: 270px;
+  border: 1px solid rgba(100,190,255,.35);
+  border-radius: 14px;
+  color: #f8efff;
+  background: rgba(8,24,52,.82);
+  box-shadow: 0 6px 22px rgba(0,0,0,.18);
+  font: 12px/1.3 system-ui, sans-serif;
+  backdrop-filter: blur(10px);
+}
+#luna-welcome .luna-avatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#8be9ff,#648cff);
+  font-size: 18px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+#luna-welcome.is-speaking .luna-avatar {
+  animation: luna-speaking 0.8s ease-in-out infinite alternate;
+  box-shadow: 0 0 16px rgba(90,190,255,.8);
+}
+#luna-welcome .luna-copy { min-width: 0; flex: 1; }
+#luna-welcome strong { display: block; font-size: 12px; }
+#luna-status { opacity: .75; font-size: 11px; }
+#luna-welcome button {
+  border: 1px solid rgba(255,220,255,.25);
+  border-radius: 999px;
+  padding: 6px 9px;
+  color: #08234a;
+  background: #b8e8ff;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+#luna-welcome .luna-bars {
+  display: none;
+  align-items: center;
+  gap: 2px;
+  height: 14px;
+}
+#luna-welcome.is-speaking .luna-bars { display: flex; }
+#luna-welcome.is-speaking #luna-speak { display: none; }
+#luna-welcome .luna-bars i {
+  width: 3px;
+  height: 5px;
+  border-radius: 4px;
+  background: #8deaff;
+  animation: luna-wave .55s ease-in-out infinite alternate;
+}
+#luna-welcome .luna-bars i:nth-child(2) { animation-delay: .12s; }
+#luna-welcome .luna-bars i:nth-child(3) { animation-delay: .24s; }
+#luna-welcome .luna-bars i:nth-child(4) { animation-delay: .08s; }
+@keyframes luna-speaking {
+  from { transform: scale(1); }
+  to { transform: scale(1.12); }
+}
+@keyframes luna-wave {
+  from { height: 4px; }
+  to { height: 14px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  #luna-welcome *, #luna-welcome { animation: none !important; }
+}
+</style>
 </head>
 
 <body>
@@ -1931,67 +2518,7 @@ body::before {
       <ul class="nav-links" id="navLinks">
         <li><a href="#home">Beranda</a></li>
         <li><a href="#about">Tentang</a></li>
-        <li><a href="#skills">Keahlian</a></li>
-        <li><a href="#projects">Proyek</a></li>
-        <li><a href="#portfolio">Portofolio</a></li>
-        <li><a href="#contact">Kontak</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section class="container hero" id="home">
-      <div class="reveal">
-        <div class="eyebrow">Creative Developer</div>
-        <h1>Halo, saya<br><span class="gradient">DEVA ARDITIA SUWITKA.</span></h1>
-        
-<p class="deva-about-animated">
-  <span class="deva-animated-line" style="--line-delay:0s">Saya masih belajar, pemula maklum masih jelek,</span>
-  <span class="deva-animated-line" style="--line-delay:.25s">saya juga masih belajar jadi maklum.</span>
-  <span class="deva-animated-line" style="--line-delay:.5s">Udah ngga bantu, ngga ngasih saran bisanya komentar,</span>
-  <span class="deva-animated-line" style="--line-delay:.75s">jangan normalisasikan jadi SDM rendah kawan.</span>
-</p>
-
-        <div class="actions">
-          <a class="btn primary" href="#projects">Lihat Proyek</a>
-          <a class="btn" href="#contact">Hubungi Saya</a>
-        </div>
-
-<!-- DEVA-LUNA-ASSISTANT -->
-<style>
-#luna-welcome {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 14px;
-  padding: 7px 10px;
-  max-width: 270px;
-  border: 1px solid rgba(100,190,255,.35);
-  border-radius: 14px;
-  color: #f8efff;
-  background: rgba(8,24,52,.82);
-  box-shadow: 0 6px 22px rgba(0,0,0,.18);
-  font: 12px/1.3 system-ui, sans-serif;
-  backdrop-filter: blur(10px);
-}
-#luna-welcome .luna-avatar {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg,#8be9ff,#648cff);
-  font-size: 18px;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-#luna-welcome.is-speaking .luna-avatar {
-  animation: luna-speaking 0.8s ease-in-out infinite alternate;
-  box-shadow: 0 0 16px rgba(90,190,255,.8);
-}
-#luna-welcome .luna-copy { min-width: 0; flex: 1; }
-#luna-welcome strong { display: block; font-size: 12px; }
-#luna-status { opacity: .75; font-size: 11px; }
+        <li><a href="#skills">Keah#luna-status { opacity: .75; font-size: 11px; }
 #luna-welcome button {
   border: 1px solid rgba(255,220,255,.25);
   border-radius: 999px;
@@ -2538,53 +3065,7 @@ body::before {
 </script>
 
 
-<style id="deva-cursor-reveal-style">
-.deva-swipe-frame {
-  position: relative;
-  overflow: hidden;
-  cursor: crosshair;
-  isolation: isolate;
-}
-.deva-swipe-frame .deva-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.deva-swipe-frame .deva-photo-main {
-  z-index: 1;
-}
-.deva-swipe-frame .deva-photo-robot {
-  z-index: 2;
-  opacity: 0;
-  clip-path: circle(0px at var(--cursor-x, 50%) var(--cursor-y, 50%));
-  transition: clip-path .12s ease-out;
-  pointer-events: none;
-}
-.deva-swipe-frame.cursor-active .deva-photo-robot {
-  opacity: 1;
-  clip-path: circle(85px at var(--cursor-x, 50%) var(--cursor-y, 50%));
-}
-.deva-swipe-frame .deva-swipe-hint {
-  z-index: 4;
-  position: absolute;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 6px 12px;
-  border: 1px solid rgba(255,255,255,.28);
-  border-radius: 999px;
-  background: rgba(2,6,23,.62);
-  color: #e0f2fe;
-  font: 700 10px/1.2 system-ui,sans-serif;
-  letter-spacing: 1.5px;
-  pointer-events: none;
-}
-@media (hover: none) {
-  .deva-swipe-frame .deva-swipe-hint { display: none; }
-}
-</style>
+
 <script id="deva-cursor-reveal-script">
 (() => {
   const frame = document.getElementById("deva-swipe-frame");
@@ -2626,251 +3107,6 @@ body::before {
 </script>
 
 
-</body>
-</html>
-
-<style>
-/* ===== PORTFOLIO IMAGE CARDS ===== */
-.portfolio-card {
-  overflow: hidden;
-  padding: 0;
-  transition: transform .35s ease, border-color .35s ease;
-}
-
-.portfolio-card:hover {
-  transform: translateY(-8px);
-}
-
-.portfolio-image {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: rgba(255,255,255,.04);
-}
-
-.portfolio-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .6s ease;
-}
-
-.portfolio-card:hover .portfolio-image img {
-  transform: scale(1.06);
-}
-
-.portfolio-info {
-  padding: 22px;
-}
-
-.portfolio-info h3 {
-  margin: 0 0 10px;
-}
-
-.portfolio-info p {
-  margin: 0;
-  line-height: 1.7;
-  color: var(--muted, #aab3c5);
-}
-</style>
-
-<style>
-/* ===== PORTFOLIO IMAGE CARDS ===== */
-.portfolio-card {
-  overflow: hidden;
-  padding: 0;
-  transition: transform .35s ease, border-color .35s ease;
-}
-
-.portfolio-card:hover {
-  transform: translateY(-8px);
-}
-
-.portfolio-image {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: rgba(255,255,255,.04);
-}
-
-.portfolio-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .6s ease;
-}
-
-.portfolio-card:hover .portfolio-image img {
-  transform: scale(1.06);
-}
-
-.portfolio-info {
-  padding: 22px;
-}
-
-.portfolio-info h3 {
-  margin: 0 0 10px;
-}
-
-.portfolio-info p {
-  margin: 0;
-  line-height: 1.7;
-  color: var(--muted, #aab3c5);
-}
-</style>
-
-<style>
-.portfolio-card-link {
-  display: block;
-  height: 100%;
-  color: inherit;
-  text-decoration: none;
-}
-.portfolio-card-link:focus-visible {
-  outline: 2px solid #8ee7ff;
-  outline-offset: 4px;
-}
-</style>
-
-<style>
-/* Pratinjau kartu: tampilkan bagian atas dokumen saja */
-.portfolio-image {
-  aspect-ratio: 16 / 7;
-  overflow: hidden;
-  position: relative;
-  background: rgba(255,255,255,.04);
-}
-
-.portfolio-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  object-position: top center;
-}
-
-/* Halaman detail tetap menampilkan gambar utuh */
-.certificate img {
-  width: 100%;
-  height: auto;
-  max-height: 82vh;
-  object-fit: contain;
-}
-</style>
-
-<style id="deva-navbar-logo-style">
-.logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.nav-logo {
-  width: 38px;
-  height: 38px;
-  object-fit: contain;
-  display: block;
-  flex-shrink: 0;
-}
-.logo-text {
-  display: inline-flex;
-  align-items: center;
-}
-</style>
-
-<style id="deva-portfolio-entrance-animation">
-#portfolio .section-head {
-  opacity: 0;
-  transform: translateY(35px) scale(.97);
-  filter: blur(8px);
-  transition:
-    opacity .9s ease,
-    transform .9s cubic-bezier(.16,1,.3,1),
-    filter .9s ease;
-}
-
-#portfolio .portfolio-card {
-  opacity: 0;
-  transform: translateY(65px) scale(.92) rotateX(8deg);
-  filter: blur(10px);
-  transition:
-    opacity .8s ease,
-    transform .9s cubic-bezier(.16,1,.3,1),
-    filter .8s ease;
-  transition-delay: calc(var(--card-index, 0) * 160ms);
-}
-
-#portfolio.portfolio-visible .section-head,
-#portfolio.portfolio-visible .portfolio-card {
-  opacity: 1;
-  transform: translateY(0) scale(1) rotateX(0);
-  filter: blur(0);
-}
-
-#portfolio .section-title {
-  text-shadow: 0 0 0 rgba(56,189,248,0);
-  transition: text-shadow 1s ease;
-}
-
-#portfolio.portfolio-visible .section-title {
-  text-shadow:
-    0 0 18px rgba(56,189,248,.35),
-    0 0 40px rgba(99,102,241,.2);
-}
-
-#portfolio .portfolio-image {
-  position: relative;
-  overflow: hidden;
-}
-
-#portfolio .portfolio-image::after {
-  content: "";
-  position: absolute;
-  inset: -60% -80%;
-  pointer-events: none;
-  background: linear-gradient(
-    110deg,
-    transparent 35%,
-    rgba(255,255,255,.22) 48%,
-    rgba(56,189,248,.18) 52%,
-    transparent 65%
-  );
-  transform: translateX(-100%) rotate(12deg);
-  opacity: 0;
-}
-
-#portfolio.portfolio-visible .portfolio-card:nth-child(1) .portfolio-image::after {
-  animation: portfolio-shine 1.4s ease .7s both;
-}
-
-#portfolio.portfolio-visible .portfolio-card:nth-child(2) .portfolio-image::after {
-  animation: portfolio-shine 1.4s ease .9s both;
-}
-
-#portfolio.portfolio-visible .portfolio-card:nth-child(3) .portfolio-image::after {
-  animation: portfolio-shine 1.4s ease 1.1s both;
-}
-
-@keyframes portfolio-shine {
-  0% { transform: translateX(-100%) rotate(12deg); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateX(100%) rotate(12deg); opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #portfolio .section-head,
-  #portfolio .portfolio-card {
-    opacity: 1;
-    transform: none;
-    filter: none;
-    transition: none;
-  }
-  #portfolio .portfolio-image::after {
-    display: none;
-  }
-}
-</style>
 
 <script id="deva-portfolio-entrance-script">
 (() => {
@@ -2901,105 +3137,9 @@ body::before {
 </script>
 
 
-<style>
-/* PERFORMANCE: mobile and tablet */
-@media (max-width: 768px) {
-  .galaxy-nebula,
-  .tech-glow {
-    filter: none !important;
-  }
 
-  .tech-monitor,
-  .tech-phone {
-    filter: none !important;
-  }
 
-  .tech-modal-backdrop {
-    backdrop-filter: none !important;
-  }
 
-  .it-holo,
-  .tech-gear {
-    animation-duration: 40s !important;
-  }
-
-  * {
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Respect device motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-</style>
-
-<style id="luna-face-style">
-#luna-welcome .luna-avatar {
-  position: relative;
-  overflow: hidden;
-  font-size: 0;
-  background: radial-gradient(circle at 35% 25%, #b7f3ff, #657dff 65%, #253c8f);
-  box-shadow: 0 0 14px #6bdcff66;
-}
-#luna-welcome .luna-face {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  transform: translate(var(--face-x, 0px), var(--face-y, 0px));
-  transition: transform .12s ease-out;
-}
-#luna-welcome .luna-eyes {
-  display: flex;
-  gap: 7px;
-  margin-top: -2px;
-}
-#luna-welcome .luna-eye {
-  position: relative;
-  width: 6px;
-  height: 9px;
-  border-radius: 50%;
-  background: #10234d;
-  box-shadow: inset 1px 1px 1px #fff;
-}
-#luna-welcome .luna-eye::after {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  top: 1px;
-  right: 1px;
-  border-radius: 50%;
-  background: white;
-}
-#luna-welcome .luna-mouth {
-  position: absolute;
-  width: 7px;
-  height: 3px;
-  left: 50%;
-  top: 21px;
-  transform: translateX(-50%);
-  border-bottom: 1.5px solid #172554;
-  border-radius: 50%;
-}
-#luna-welcome .luna-face.is-blinking .luna-eye {
-  transform: scaleY(.12);
-}
-#luna-welcome .luna-eye {
-  transition: transform .08s ease;
-}
-@media(prefers-reduced-motion:reduce) {
-  #luna-welcome .luna-face { transition: none; }
-}
-</style>
 
 <script id="luna-face-script">
 (() => {
@@ -3052,41 +3192,7 @@ body::before {
 })();
 </script>
 
-<style id="luna-speaking-mouth">
-#luna-welcome .luna-mouth {
-  width: 7px;
-  height: 3px;
-  border: 1.5px solid #172554;
-  border-top: 0;
-  border-radius: 0 0 8px 8px;
-  background: #172554;
-  transform: translateX(-50%);
-  transform-origin: center;
-}
 
-#luna-welcome.is-speaking .luna-mouth {
-  animation: luna-mouth-talk .18s ease-in-out infinite alternate;
-}
-
-@keyframes luna-mouth-talk {
-  0% {
-    height: 2px;
-    width: 5px;
-    border-radius: 50%;
-  }
-  100% {
-    height: 8px;
-    width: 7px;
-    border-radius: 45%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #luna-welcome.is-speaking .luna-mouth {
-    animation-duration: .6s;
-  }
-}
-</style>
 
 <script id="luna-speaking-sync">
 (() => {
@@ -3109,61 +3215,9 @@ body::before {
 })();
 </script>
 
-<style id="cleanlink-preview-fix">
-#projects .project-card {
-  overflow: hidden;
-}
 
-#projects .project-visual.cleanlink-preview {
-  width: 100%;
-  height: 220px;
-  max-height: 220px;
-  overflow: hidden;
-  border-radius: 16px;
-  padding: 0;
-  margin: 0;
-  display: block;
-}
 
-#projects .project-visual.cleanlink-preview img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  object-fit: cover;
-  object-position: top center;
-}
 
-@media (max-width: 600px) {
-  #projects .project-visual.cleanlink-preview {
-    height: 180px;
-    max-height: 180px;
-  }
-}
-</style>
-
-<style id="cleanlink-card-polish">
-#projects .section-subtitle { margin-bottom: 2.5rem; }
-#projects .cleanlink-project-card {
-  border: 1px solid rgba(56,189,248,.32);
-  border-radius: 22px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
-}
-#projects .cleanlink-project-card:hover,
-#projects .cleanlink-project-card:focus-visible {
-  transform: translateY(-8px);
-  border-color: #38bdf8;
-  box-shadow: 0 18px 50px rgba(56,189,248,.16);
-  outline: none;
-}
-#projects .cleanlink-project-card .project-content { padding: 1.5rem; }
-#projects .cleanlink-project-card .project-visual { border-radius: 0; }
-#projects .cleanlink-more { margin-top: 1.2rem; color: #38bdf8; font-size: .9rem; }
-#projects .cleanlink-more span { display: inline-block; transition: transform .25s ease; }
-#projects .cleanlink-project-card:hover .cleanlink-more span { transform: translate(4px,-3px); }
-</style>
 <script id="cleanlink-card-navigation">
 (() => {
   document.querySelectorAll('[data-project-link]').forEach(card => {
@@ -3181,31 +3235,5 @@ body::before {
 })();
 </script>
 
-<style id="cleanlink-card-final">
-#projects .cleanlink-project-card {
-  border-radius: 18px;
-  overflow: hidden;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-}
-#projects .cleanlink-project-card .project-visual {
-  height: 220px;
-  max-height: 220px;
-  margin: 0;
-  border-radius: 0;
-  overflow: hidden;
-}
-#projects .cleanlink-project-card .project-visual img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-}
-#projects .cleanlink-project-card .project-content {
-  padding: 1.25rem;
-}
-#projects .cleanlink-project-card .project-content h3 {
-  margin-top: 0;
-}
-</style>
+</body>
+</html>
